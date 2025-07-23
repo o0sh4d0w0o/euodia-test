@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
     
@@ -25,14 +25,14 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
         Product product = productService.getProductById(id);
 
         return ResponseEntity.ok(product);
     }
 
     @GetMapping("/{id}/final-price")
-    public ResponseEntity<FinalPriceDto> calculateFinalPrice(@PathVariable Long id) {
+    public ResponseEntity<FinalPriceDto> calculateFinalPrice(@PathVariable("id") Long id) {
         FinalPriceDto finalPrice = productService.calculateFinalPrice(id);
 
         return ResponseEntity.ok(finalPrice);
